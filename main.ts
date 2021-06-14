@@ -1,5 +1,36 @@
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    biscuit.destroy(effects.disintegrate, 500)
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    scene.cameraShake(4, 500)
+    creates_and_gates.destroy(effects.smiles, 500)
+    dog.startEffect(effects.fire, 200)
+    info.changeLifeBy(-1)
+})
 let projectile: Sprite = null
-let creates_and_gates = [img`
+let dog: Sprite = null
+let creates_and_gates: Image[] = []
+let biscuit: Sprite = null
+biscuit = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 2 2 . . . . . . . . . 
+    . . . . . 2 2 2 . . . . . . . . 
+    . . . . . 2 e 2 2 . . . . . . . 
+    . . . . . 2 e e 2 2 . . . . . . 
+    . . . . . 2 e e e 2 . . . . . . 
+    . . . . . 2 e e e 2 2 . . . . . 
+    . . . . . 2 e e e e 2 2 . . . . 
+    . . . . . 2 e e e e e 2 . . . . 
+    . . . . . 2 e e e e e 2 2 . . . 
+    . . . . . 2 e e e 2 2 2 2 2 . . 
+    . . . . . 2 e e 2 2 . . . . . . 
+    . . . . . 2 2 2 2 . . . . . . . 
+    . . . . . . . 2 . . . . . . . . 
+    `, SpriteKind.Food)
+creates_and_gates = [img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -34,7 +65,7 @@ let creates_and_gates = [img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `]
-let dog = sprites.create(img`
+dog = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
