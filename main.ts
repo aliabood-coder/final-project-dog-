@@ -10,8 +10,26 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let projectile: Sprite = null
 let dog: Sprite = null
-let creates_and_gates: Image[] = []
 let biscuit: Sprite = null
+let creates_and_gates: Image = null
+creates_and_gates = img`
+    2 2 . . . . . . . . . . . . . 2 
+    . 2 2 . . . . . . . . . . . 2 2 
+    . . 2 . . . . . . . . . . 2 2 . 
+    . . . 2 . . . . . . . . 2 . . . 
+    . . . . 2 . . . . . . 2 2 . . . 
+    . . . . . 2 2 . . . 2 2 . . . . 
+    . . . . . . 2 2 . 2 2 . . . . . 
+    . . . . . . . 2 2 2 . . . . . . 
+    . . . . . . . 2 2 2 . . . . . . 
+    . . . . . . 2 2 . 2 . . . . . . 
+    . . . . . 2 2 . . . 2 2 . . . . 
+    . . . . 2 2 . . . . . 2 . . . . 
+    . . . 2 2 . . . . . . 2 2 . . . 
+    . . 2 2 . . . . . . . . 2 . . . 
+    2 2 2 . . . . . . . . . . 2 . . 
+    2 . . . . . . . . . . . . 2 2 2 
+    `
 biscuit = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -30,41 +48,6 @@ biscuit = sprites.create(img`
     . . . . . 2 2 2 2 . . . . . . . 
     . . . . . . . 2 . . . . . . . . 
     `, SpriteKind.Food)
-creates_and_gates = [img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . 5 5 5 5 5 5 5 5 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 . . . . . . . 5 . . . . 
-    . . . 5 5 5 5 5 5 5 5 5 . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . 9 9 9 9 9 9 9 9 . . . . . 
-    . . . 9 . . . . . . 9 . . . . . 
-    . . . 9 . . . . . . 9 . . . . . 
-    . . . 9 . . . . . . 9 . . . . . 
-    . . . 9 . . . . . . 9 . . . . . 
-    . . . 9 . . . . . . 9 . . . . . 
-    . . . 9 9 9 9 9 9 9 9 . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `]
 dog = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -88,7 +71,7 @@ dog.bottom = 120
 controller.moveSprite(dog, 100, 100)
 info.setLife(3)
 game.onUpdateInterval(500, function () {
-    projectile = sprites.createProjectileFromSide(creates_and_gates[randint(0, creates_and_gates.length - 1)], 0, 75)
+    projectile = sprites.createProjectileFromSide(creates_and_gates, 0, 75)
     projectile.setKind(SpriteKind.Enemy)
     projectile.x = randint(10, 150)
 })
